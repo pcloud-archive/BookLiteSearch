@@ -1,0 +1,83 @@
+ext.deps = [:]
+def deps = [:]
+
+/* versions */
+def versions = [:]
+versions.kotlin = '1.4.21'
+versions.koin = '2.2.1'
+versions.rxjava = '2.1.3'
+versions.rx_android = '2.0.1'
+versions.android_gradle_plugin = '4.0.1'
+versions.retrofit = '2.9.0'
+versions.room = "2.2.5"
+versions.paging = '2.1.0-rc01'
+
+def build_versions = [:]
+build_versions.min_sdk = 23
+build_versions.target_sdk = 29
+build_versions.build_tools = "29.0.3"
+
+def lifecycle = [:]
+lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+
+def support = [:]
+support.annotations = "androidx.annotation:annotation:$versions.support"
+support.app_compat = "androidx.appcompat:appcompat:$versions.support"
+support.recyclerview = "androidx.recyclerview:recyclerview:$versions.support"
+support.design = "com.google.android.material:material:$versions.support"
+support.v4 = "androidx.legacy:legacy-support-v4:$versions.support"
+support.core_utils = "androidx.legacy:legacy-support-core-utils:$versions.support"
+
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+room.room_ktx = "androidx.room:room-ktx:$versions.room"
+room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
+room.testing = "androidx.room:room-testing:$versions.room"
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.rx_adapter = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+
+def koin = [:]
+koin.core = "org.koin:koin-core:$versions.koin"
+koin.core_ext = "org.koin:koin-core-ext:$versions.koin"
+koin.test = "org.koin:koin-test:$versions.koin"
+koin.androidx_scope = "org.koin:koin-androidx-scope:$versions.koin"
+koin.androidx_viewmodel = "org.koin:koin-androidx-viewmodel:$versions.koin"
+koin.androidx_fragment = "org.koin:koin-androidx-fragment:$versions.koin"
+koin.androidx_workmanager = "org.koin:koin-androidx-workmanager:$versions.koin"
+koin.androidx_compose = "org.koin:koin-androidx-compose:$versions.koin"
+koin.androidx_ext = "org.koin:koin-androidx-ext:$versions.koin"
+
+
+deps.kotlin = kotlin
+deps.koin = koin
+deps.retrofit = retrofit
+deps.room = room
+deps.paging_ktx = "androidx.paging:paging-runtime-ktx:$versions.paging"
+deps.rxjava = "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+deps.rxandroid = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+
+
+ext.build_versions = build_versions
+ext.deps = deps
+
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+ext.addRepos = this.&addRepos
