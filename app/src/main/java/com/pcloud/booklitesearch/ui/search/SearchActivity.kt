@@ -1,11 +1,14 @@
 package com.pcloud.booklitesearch.ui.search
 
+import android.content.ClipData
+import android.content.ClipDescription
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.databinding.adapters.ViewBindingAdapter.setOnLongClickListener
 import androidx.lifecycle.Observer
 import com.pcloud.booklitesearch.R
 import com.pcloud.booklitesearch.data.entity.SearchHistory
@@ -16,6 +19,14 @@ import com.pcloud.booklitesearch.util.EventWraper.EventObserver
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class SearchActivity: BaseActivity<ActivitySearchBinding>() {
+    val searchHistoryTextViewClickListener = View.OnLongClickListener {
+        var item = ClipData.Item(it.tag as CharSequence)
+        var data = ClipData(it.tag as CharSequence, arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN), item)
+        val shadow = View.DragShadowBuilder(it)
+
+        it.startDrag(data, shadow, it, 0)
+        true
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +37,16 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>() {
         (viewDataBinding.vm as SearchViewModel).startActivityEvent.observe(
             this, EventObserver(this@SearchActivity::callActivity))
 
-        (viewDataBinding.vm as SearchViewModel).addSearchHistoryTextViewEvent.observe(
-            this, EventObserver(this@SearchActivity::addSearchHistoryTextView))
+        (viewDataBinding.vm as SearchViewModel).visibleSearchHistoryTextViewEvent.observe(
+            this, EventObserver(this@SearchActivity::visibleSearchHistoryTextView))
 
         viewDataBinding.rootLayout.setOnTouchListener { v, event -> doTouch(v, event) }
+        viewDataBinding.searchText1.setOnLongClickListener(searchHistoryTextViewClickListener)
+        viewDataBinding.searchText2.setOnLongClickListener(searchHistoryTextViewClickListener)
+        viewDataBinding.searchText3.setOnLongClickListener(searchHistoryTextViewClickListener)
+        viewDataBinding.searchText4.setOnLongClickListener(searchHistoryTextViewClickListener)
+        viewDataBinding.searchText5.setOnLongClickListener(searchHistoryTextViewClickListener)
+
 
         (viewDataBinding.vm as SearchViewModel).init()
 
@@ -48,11 +65,19 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>() {
         return true
     }
 
-    private fun addSearchHistoryTextView(searchHistoryList: List<SearchHistory>) {
-        for(searchHistory in searchHistoryList) {
-            val view: TextView = TextView(this)
-            view.text = searchHistory.text
-            viewDataBinding.rootLayout.addView(view);
+    private fun visibleSearchHistoryTextView(searchHistoryList: List<SearchHistory>) {
+        searchHistoryList.forEachIndexed { index, item ->
+            var textView: TextView? = null
+            when(index) {
+                0 ->  textView = viewDataBinding.searchText1
+                1 ->  textView = viewDataBinding.searchText2
+                2 ->  textView = viewDataBinding.searchText3
+                3 ->  textView = viewDataBinding.searchText4
+                4 ->  textView = viewDataBinding.searchText5
+            }
+            textView!!.text = item.text
+            textView!!.tag = item.text
+            textView!!.visibility = View.VISIBLE
         }
     }
 

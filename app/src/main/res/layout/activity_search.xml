@@ -13,7 +13,7 @@
         android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#BBCDA7"
+        android:background="@color/design_default_color_background"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:touchscreenBlocksFocus="true">
@@ -22,6 +22,7 @@
             android:id="@+id/textInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,15 +39,96 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btn_test"
+        <TextView
+            android:id="@+id/searchText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DBCall"
-            android:onClick="@{() -> vm.doTest()}"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+            android:background="@drawable/shape_text1"
+            android:fontFamily="sans-serif-black"
+            android:padding="10dp"
+            android:text="TextView"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.219"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.333" />
+
+        <TextView
+            android:id="@+id/searchText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_text2"
+            android:fontFamily="sans-serif-black"
+            android:padding="10dp"
+            android:text="TextView"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.735"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.228" />
+
+        <TextView
+            android:id="@+id/searchText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_text3"
+            android:fontFamily="sans-serif-black"
+            android:padding="10dp"
+            android:text="TextView"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.666" />
+
+        <TextView
+            android:id="@+id/searchText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_text5"
+            android:fontFamily="sans-serif-black"
+            android:padding="10dp"
+            android:text="TextView"
+            android:textColor="?attr/colorError"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.818"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.814" />
+
+        <TextView
+            android:id="@+id/searchText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_text4"
+            android:fontFamily="sans-serif-black"
+            android:padding="10dp"
+            android:text="TextView"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.095"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.749" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

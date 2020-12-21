@@ -1,5 +1,6 @@
 package com.pcloud.booklitesearch.ui.search
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,9 +15,9 @@ class SearchViewModel(private val dao: SearchHistoryDao): ViewModel() {
     val startActivityEvent: LiveData<Event<Any>>
         get() = _startActivityEvent
 
-    private val _addSearchHistoryTextViewEvent = MutableLiveData<Event<List<SearchHistory>>>()
-    val addSearchHistoryTextViewEvent:LiveData<Event<List<SearchHistory>>>
-        get() = _addSearchHistoryTextViewEvent
+    private val _visibleSearchHistoryTextViewEvent = MutableLiveData<Event<List<SearchHistory>>>()
+    val visibleSearchHistoryTextViewEvent:LiveData<Event<List<SearchHistory>>>
+        get() = _visibleSearchHistoryTextViewEvent
 
     var searchText:String = ""
     var hintMsg:String = "TEST"
@@ -40,13 +41,13 @@ class SearchViewModel(private val dao: SearchHistoryDao): ViewModel() {
         }
     }
 
-    fun addSearchHistoryTextViewsEvent(searchHistoryList: List<SearchHistory>) {
-        _addSearchHistoryTextViewEvent.value = Event(searchHistoryList)
+    fun visibleSearchHistoryTextView(searchHistoryList: List<SearchHistory>) {
+        _visibleSearchHistoryTextViewEvent.value = Event(searchHistoryList)
     }
 
     fun init() {
         val searchHistoryList = dao.findAll()
-        addSearchHistoryTextViewsEvent(searchHistoryList)
+        visibleSearchHistoryTextView(searchHistoryList)
     }
 
     fun doSearch() {
@@ -54,13 +55,5 @@ class SearchViewModel(private val dao: SearchHistoryDao): ViewModel() {
         val searchHistory = SearchHistory(text = searchText, date=nowDate)
 
         dao.insert(searchHistory)
-    }
-
-    fun doTest() {
-        val dataList = dao.findAll()
-        println("=======================================")
-        for (searchHistory in dataList) {
-            println(searchHistory.text)
-        }
     }
 }
