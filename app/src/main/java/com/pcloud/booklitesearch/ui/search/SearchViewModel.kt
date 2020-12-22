@@ -1,12 +1,10 @@
 package com.pcloud.booklitesearch.ui.search
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.pcloud.booklitesearch.data.dao.SearchHistoryDao
 import com.pcloud.booklitesearch.data.entity.SearchHistory
-import com.pcloud.booklitesearch.ui.base.SingleLiveEvent
 import com.pcloud.booklitesearch.util.EventWraper.Event
 import java.util.*
 
@@ -19,7 +17,7 @@ class SearchViewModel(private val dao: SearchHistoryDao): ViewModel() {
     val visibleSearchHistoryTextViewEvent:LiveData<Event<List<SearchHistory>>>
         get() = _visibleSearchHistoryTextViewEvent
 
-    var searchText:String = ""
+    var searchText = MutableLiveData<String>()
     var hintMsg:String = "TEST"
     // 검색
         // 검색 시 히스토리가 남아야함
@@ -34,10 +32,12 @@ class SearchViewModel(private val dao: SearchHistoryDao): ViewModel() {
 
     // 처음 등장 시 텍스트 뷰 애니메이션 콜
     fun doFocusChange(hasFocus:Boolean) {
-        println("TEST: Focus: $hasFocus | hasFocus.and:${hasFocus.and(false)}  |  searchText:$searchText")
-        if(!hasFocus && searchText.isNotEmpty()) {
-            doSearch()
-            _startActivityEvent.value = Event("")
+        println("TEST: Focus: $hasFocus | hasFocus.and:${hasFocus.and(false)}  |  searchText:$searchText.value")
+        searchText.value?.apply {
+            if(!hasFocus && isNotEmpty()) {
+                doSearch()
+                _startActivityEvent.value = Event("")
+            }
         }
     }
 
@@ -46,14 +46,34 @@ class SearchViewModel(private val dao: SearchHistoryDao): ViewModel() {
     }
 
     fun init() {
+        searchText.value = ""
         val searchHistoryList = dao.findAll()
         visibleSearchHistoryTextView(searchHistoryList)
     }
 
-    fun doSearch() {
+    private fun doSearch() {
         val nowDate = Date(System.currentTimeMillis())
-        val searchHistory = SearchHistory(text = searchText, date=nowDate)
+        val tempText = searchText.value
+        var textEquals = false
+        var searchHistory:SearchHistory? = null
+        val historyList = dao.findAll()
 
-        dao.insert(searchHistory)
+        for(history in historyList) {
+            // TODO 완전 동일한 내용이면 Date 덮어씌움
+            if(tempText == history.text) {
+                searchHistory = SearchHistory(id=history.id, history.text, nowDate)
+                textEquals = true
+                break
+            }
+        }
+        if(!textEquals) {
+            searchHistory = SearchHistory(text = tempText!!, date = nowDate)
+        }
+
+        if(historyList.size >= 5 && !textEquals) {
+            dao.delete(historyList[0])
+        }
+
+        dao.insert(searchHistory!!)
     }
 }

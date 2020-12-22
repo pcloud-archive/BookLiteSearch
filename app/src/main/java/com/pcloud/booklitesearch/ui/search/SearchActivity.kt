@@ -46,10 +46,12 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>() {
         viewDataBinding.searchText3.setOnLongClickListener(searchHistoryTextViewClickListener)
         viewDataBinding.searchText4.setOnLongClickListener(searchHistoryTextViewClickListener)
         viewDataBinding.searchText5.setOnLongClickListener(searchHistoryTextViewClickListener)
+    }
 
-
+    override fun onResume() {
+        super.onResume()
+        println("onResume")
         (viewDataBinding.vm as SearchViewModel).init()
-
     }
 
     override fun getLayoutId(): Int {
@@ -66,6 +68,12 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>() {
     }
 
     private fun visibleSearchHistoryTextView(searchHistoryList: List<SearchHistory>) {
+        // TODO visible 된 TextView 탐색 및 unVisible로 변경
+        viewDataBinding.searchText1.visibility = View.GONE
+        viewDataBinding.searchText2.visibility = View.GONE
+        viewDataBinding.searchText3.visibility = View.GONE
+        viewDataBinding.searchText4.visibility = View.GONE
+        viewDataBinding.searchText5.visibility = View.GONE
         searchHistoryList.forEachIndexed { index, item ->
             var textView: TextView? = null
             when(index) {
