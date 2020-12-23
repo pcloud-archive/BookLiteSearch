@@ -8,10 +8,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import androidx.databinding.adapters.ViewBindingAdapter.setOnLongClickListener
-import androidx.lifecycle.Observer
 import com.pcloud.booklitesearch.R
-import com.pcloud.booklitesearch.data.entity.SearchHistory
+import com.pcloud.booklitesearch.data.db.entity.SearchHistory
 import com.pcloud.booklitesearch.databinding.ActivitySearchBinding
 import com.pcloud.booklitesearch.ui.base.BaseActivity
 import com.pcloud.booklitesearch.ui.booklist.BookListActivity

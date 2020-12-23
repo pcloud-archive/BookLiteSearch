@@ -1,6 +1,8 @@
 package com.pcloud.booklitesearch
 
 import android.app.Application
+import com.pcloud.booklitesearch.di.apiModule
+import com.pcloud.booklitesearch.di.networkModule
 import com.pcloud.booklitesearch.di.roomModule
 import com.pcloud.booklitesearch.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -17,7 +19,7 @@ class MyApplication : Application() {
             androidLogger()
             androidContext(this@MyApplication)
             androidFileProperties()
-            modules(viewModelModule, roomModule)
+            modules(viewModelModule, roomModule, apiModule, networkModule)
         }
     }
 }

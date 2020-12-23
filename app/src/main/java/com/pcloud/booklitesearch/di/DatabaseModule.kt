@@ -1,6 +1,6 @@
 package com.pcloud.booklitesearch.di
 
-import com.pcloud.booklitesearch.data.database.SearchHistoryDatabase
+import com.pcloud.booklitesearch.data.db.database.SearchHistoryDatabase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 

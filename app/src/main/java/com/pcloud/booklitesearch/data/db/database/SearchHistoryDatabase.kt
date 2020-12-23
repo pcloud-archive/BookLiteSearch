@@ -1,4 +1,4 @@
-package com.pcloud.booklitesearch.data.database
+package com.pcloud.booklitesearch.data.db.database
 
 import android.content.Context
 import androidx.room.Database
@@ -6,9 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.pcloud.booklitesearch.data.dao.SearchHistoryDao
-import com.pcloud.booklitesearch.data.database.SearchHistoryDatabase.Companion.DB_VERSION
-import com.pcloud.booklitesearch.data.entity.SearchHistory
+import com.pcloud.booklitesearch.data.db.dao.SearchHistoryDao
+import com.pcloud.booklitesearch.data.db.database.SearchHistoryDatabase.Companion.DB_VERSION
+import com.pcloud.booklitesearch.data.db.entity.SearchHistory
 
 @Database(entities = [SearchHistory::class], version= DB_VERSION, exportSchema=false )
 abstract class SearchHistoryDatabase : RoomDatabase() {

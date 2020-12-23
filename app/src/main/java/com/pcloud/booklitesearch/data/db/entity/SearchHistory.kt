@@ -1,10 +1,10 @@
-package com.pcloud.booklitesearch.data.entity
+package com.pcloud.booklitesearch.data.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.pcloud.booklitesearch.data.converter.DateConverter
+import com.pcloud.booklitesearch.data.db.converter.DateConverter
 import java.util.*
 
 @Entity(tableName="SearchHistory")

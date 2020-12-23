@@ -2,13 +2,13 @@ package com.pcloud.booklitesearch.ui.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.pcloud.booklitesearch.data.dao.SearchHistoryDao
-import com.pcloud.booklitesearch.data.entity.SearchHistory
+import com.pcloud.booklitesearch.data.db.dao.SearchHistoryDao
+import com.pcloud.booklitesearch.data.db.entity.SearchHistory
+import com.pcloud.booklitesearch.ui.base.BaseViewModel
 import com.pcloud.booklitesearch.util.EventWraper.Event
 import java.util.*
 
-class SearchViewModel(private val dao: SearchHistoryDao): ViewModel() {
+class SearchViewModel(private val dao: SearchHistoryDao): BaseViewModel() {
     private val _startActivityEvent = MutableLiveData<Event<Any>>()
     val startActivityEvent: LiveData<Event<Any>>
         get() = _startActivityEvent

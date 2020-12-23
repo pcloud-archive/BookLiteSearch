@@ -1,7 +1,7 @@
-package com.pcloud.booklitesearch.data.dao
+package com.pcloud.booklitesearch.data.db.dao
 
 import androidx.room.*
-import com.pcloud.booklitesearch.data.entity.SearchHistory
+import com.pcloud.booklitesearch.data.db.entity.SearchHistory
 
 @Dao
 interface SearchHistoryDao {

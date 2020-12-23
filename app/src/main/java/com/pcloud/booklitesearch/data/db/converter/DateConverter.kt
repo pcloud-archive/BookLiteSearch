@@ -1,4 +1,4 @@
-package com.pcloud.booklitesearch.data.converter
+package com.pcloud.booklitesearch.data.db.converter
 
 import androidx.room.TypeConverter
 import java.util.*
