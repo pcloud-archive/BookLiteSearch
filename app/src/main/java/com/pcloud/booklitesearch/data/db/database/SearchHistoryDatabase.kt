@@ -16,7 +16,7 @@ abstract class SearchHistoryDatabase : RoomDatabase() {
 
     companion object {
         const val DB_VERSION = 1
-        private const val DB_NAME = "book_lite_search_v3.db"
+        private const val DB_NAME = "book_lite_search_v5.db"
         @Volatile
         private var INSTANCE: SearchHistoryDatabase? = null
 

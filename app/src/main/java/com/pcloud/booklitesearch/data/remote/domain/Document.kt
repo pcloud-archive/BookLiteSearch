@@ -1,5 +1,6 @@
 package com.pcloud.booklitesearch.data.remote.domain
 
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 data class Document (

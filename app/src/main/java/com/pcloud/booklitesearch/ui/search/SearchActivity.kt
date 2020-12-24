@@ -92,7 +92,9 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>() {
         imm.hideSoftInputFromWindow(window.decorView.applicationWindowToken, 0)
     }
 
-    private fun callActivity(v:Any) {
-        startActivity(Intent(this, BookListActivity::class.java))
+    private fun callActivity(query:String) {
+        val intent: Intent = Intent(this, BookListActivity::class.java)
+        intent.putExtra("query", query)
+        startActivity(intent)
     }
 }

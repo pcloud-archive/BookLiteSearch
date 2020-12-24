@@ -9,8 +9,8 @@ import com.pcloud.booklitesearch.util.EventWraper.Event
 import java.util.*
 
 class SearchViewModel(private val dao: SearchHistoryDao): BaseViewModel() {
-    private val _startActivityEvent = MutableLiveData<Event<Any>>()
-    val startActivityEvent: LiveData<Event<Any>>
+    private val _startActivityEvent = MutableLiveData<Event<String>>()
+    val startActivityEvent: LiveData<Event<String>>
         get() = _startActivityEvent
 
     private val _visibleSearchHistoryTextViewEvent = MutableLiveData<Event<List<SearchHistory>>>()
@@ -36,7 +36,7 @@ class SearchViewModel(private val dao: SearchHistoryDao): BaseViewModel() {
         searchText.value?.apply {
             if(!hasFocus && isNotEmpty()) {
                 doSearch()
-                _startActivityEvent.value = Event("")
+                _startActivityEvent.value = Event(this)
             }
         }
     }

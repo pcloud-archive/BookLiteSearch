@@ -1,9 +1,13 @@
 package com.pcloud.booklitesearch.ui.booklist
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
 import com.pcloud.booklitesearch.R
 import com.pcloud.booklitesearch.databinding.ActivityBookListBinding
+
 import com.pcloud.booklitesearch.ui.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -16,12 +20,8 @@ class BookListActivity: BaseActivity<ActivityBookListBinding>() {
 
         viewDataBinding.vm = getViewModel()
         viewDataBinding.lifecycleOwner = this
-    }
+        (viewDataBinding.vm as BookListViewModel).query = intent.getStringExtra("query")
 
-    override fun onResume() {
-        super.onResume()
         (viewDataBinding.vm as BookListViewModel).bookListRequest()
     }
-
-
 }

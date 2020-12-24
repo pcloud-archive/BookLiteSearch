@@ -6,7 +6,7 @@ import com.pcloud.booklitesearch.data.remote.domain.Meta
 
 data class BookListSearchResponse (
     @SerializedName("meta") val meta: Meta,
-    @SerializedName("documents") val documents:List<Document>
+    @SerializedName("documents") val documents:ArrayList<Document>
 )
 
 
