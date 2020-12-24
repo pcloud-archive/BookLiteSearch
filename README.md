@@ -15,4 +15,4 @@ Kakao api를 사용한 도서 검색 App
 
 
 
-![Sample](https://user-images.githubusercontent.com/22608825/103090253-e25db300-4633-11eb-946d-8ad232d5cf4b.gif)
+<img src="https://user-images.githubusercontent.com/22608825/103090253-e25db300-4633-11eb-946d-8ad232d5cf4b.gif" alt="Sample" style="zoom:67%;" />

@@ -10,6 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data android:name="api_key_name" android:value="@string/api_key_name"/>
+        <meta-data android:name="api_key_value" android:value="@string/api_key_value"/>
+
         <activity android:name=".ui.search.SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

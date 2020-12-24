@@ -1,5 +1,6 @@
 package com.pcloud.booklitesearch.di
 
+import android.content.pm.PackageManager
 import com.google.gson.GsonBuilder
 import com.pcloud.booklitesearch.BuildConfig
 import okhttp3.Cache
@@ -48,9 +49,13 @@ val networkModule = module {
     }
 
     single {
+        val ai = androidApplication().applicationContext.packageManager.getApplicationInfo(androidApplication().applicationContext.packageName, PackageManager.GET_META_DATA)
+        val bundle = ai.metaData
+        bundle.getString("api_key_name")
         Interceptor {
             it.proceed(it.request().newBuilder().apply {
-                header("Authorization", "KakaoAK 3435476fafc050a6d8fdbbb76ec52577")
+                header(bundle.getString("api_key_name"),
+                    bundle.getString("api_key_value"))
             }.build())
         }
     }
